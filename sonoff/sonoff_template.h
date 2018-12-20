@@ -126,7 +126,7 @@ enum ProgramSelectablePins {
 // Text in webpage Module Parameters and commands GPIOS and GPIO
 const char kSensorNames[] PROGMEM =
   D_SENSOR_NONE "|"
-  D_SENSOR_DHT11 "|" D_SENSOR_AM2301 "|" D_SENSOR_SI7021 "|"
+  D_SENSOR_DHT11 "|" D_SENSOR_AM2301 "|" D_SENSOR_SI7021 "|" D_SENSOR_MPU6050 "|"
   D_SENSOR_DS18X20 "|"
   D_SENSOR_I2C_SCL "|" D_SENSOR_I2C_SDA "|"
   D_SENSOR_WS2812 "|"
@@ -174,6 +174,8 @@ enum SupportedModules {
   EXS_RELAY,
   WION,
   WEMOS,
+  BUNKERSCHILD_Z1,
+  ESP01,
   SONOFF_DEV,
   H801,
   SONOFF_SC,
@@ -263,6 +265,8 @@ const uint8_t kNiceList[MAXMODULE] PROGMEM = {
   KMC_70011,
   AILIGHT,
   WEMOS,
+  BUNKERSCHILD_Z1,
+  ESP01,
   WITTY
 };
 
@@ -502,6 +506,36 @@ const mytmplt kModules[MAXMODULE] PROGMEM = {
      GPIO_USER,        // GPIO15 D8
      GPIO_USER,        // GPIO16 D0 Wemos Wake
      GPIO_ADC0         // ADC0   A0 Analog input
+  },
+  { "Bunkerschld Z1",         // Bunkerschild ZENZOR device based on ESP8266
+     GPIO_I2C_SCL,        // GPIO00 D3 Wemos Button Shield
+     GPIO_USER,        // GPIO01 TX Serial RXD
+     GPIO_DHT22,        // GPIO02 D4 Wemos DHT Shield
+     GPIO_USER,        // GPIO03 RX Serial TXD and Optional sensor
+     GPIO_I2C_SDA,        // GPIO04 D2 Wemos I2C SDA
+     GPIO_SWT2,        // GPIO05 D1 Wemos I2C SCL / Wemos Relay Shield (0 = Off, 1 = On) / Wemos WS2812B RGB led Shield
+     0, 0, 0, 0, 0, 0, // Flash connection
+     GPIO_REL2,        // GPIO12 D6
+     GPIO_REL3,        // GPIO13 D7
+     GPIO_REL1,        // GPIO14 D5
+     GPIO_SWT3,        // GPIO15 D8
+     GPIO_SWT1,        // GPIO16 D0 Wemos Wake
+     GPIO_ADC0         // ADC0   A0 Analog input
+  },
+  { "ESP01",  // ESP01 1M
+     GPIO_USER,        // GPIO00 Button 0 on header (0 = On, 1 = Off)
+     GPIO_USER,        // GPIO01 Serial RXD and Optional sensor
+     GPIO_USER,
+     GPIO_USER,        // GPIO03 Serial TXD and Optional sensor
+     0,
+     0,        // GPIO05 Relay 2 (0 = Off, 1 = On)
+     0, 0, 0,          // Flash connection
+     0,        // GPIO09 Button 1 on header (0 = On, 1 = Off)
+     0,        // GPIO10 Button on casing
+     0,                // Flash connection
+     0,        // GPIO12 Relay 1 (0 = Off, 1 = On)
+     0,    // GPIO13 Blue Led (0 = On, 1 = Off)
+     0, 0, 0, 0
   },
   { "Sonoff Dev",      // Sonoff Dev (ESP8266)
      GPIO_KEY1,        // GPIO00 E-FW Button

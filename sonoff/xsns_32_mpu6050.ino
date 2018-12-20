@@ -27,8 +27,6 @@
  * I2C Address: 0x68 or 0x69 with AD0 HIGH
 \*********************************************************************************************/
 
-#define D_SENSOR_MPU6050 "MPU6050"
-
 #define MPU_6050_ADDR_AD0_LOW            0x68
 #define MPU_6050_ADDR_AD0_HIGH           0x69
 
